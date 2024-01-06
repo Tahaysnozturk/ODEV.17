@@ -1,0 +1,50 @@
+﻿using System;
+
+namespace Ornek220
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Dizi Boyutunu Giriniz: ");
+            if (int.TryParse(Console.ReadLine(), out int boyut) && boyut >= 2)
+            {
+                int[] B = new int[boyut];
+
+                Console.WriteLine("Dizi Elemanlarını Giriniz:");
+                for (int i = 0; i < B.Length; i++)
+                {
+                    Console.Write($"{i + 1}. Elemanı Gir: ");
+                    if (int.TryParse(Console.ReadLine(), out B[i]))
+                    {
+                        // Değer girildi, devam et.
+                    }
+                    else
+                    {
+                        Console.WriteLine("Geçersiz bir değer girdiniz. Program sonlandırılıyor.");
+                        return;
+                    }
+                }
+
+                int enYakinIndis = 1;
+
+                for (int a = 2; a < B.Length; a++)
+                {
+                    if (Math.Abs(B[0] - B[a]) < Math.Abs(B[0] - B[enYakinIndis]))
+                    {
+                        enYakinIndis = a;
+                    }
+                }
+
+                Console.WriteLine($"İlk Sayıya En Yakın Sayı = {B[enYakinIndis]}");
+            }
+            else
+            {
+                Console.WriteLine("Geçersiz dizi boyutu. Program sonlandırılıyor.");
+            }
+
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
+        }
+    }
+}
